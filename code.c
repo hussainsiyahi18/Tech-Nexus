@@ -45,23 +45,21 @@ void lst_of_all(struct Laptop l[], struct Phone p[]) {
     
     // Laptop Entry 1
     l[0].id = 1;
-    strcpy(l[0].name, "HP 15s (Core i3)"); 
+    strcpy(l[0].name, "HP 15s (Core i3)");
     l[0].price = 38000;
-    l[0].brand = 1;      
-    l[0].usage = 2;      
-    l[0].ram = 8;        
+    l[0].brand = 1;      // 1=HP (Matches our Brand Map)
+    l[0].usage = 2;      // 2=Student
+    l[0].ram = 8;       
     l[0].storage = 512;  
-    l[0].rating = 4.1;  
 
-    // Laptop Entry 2
+    // Laptop Entry 2: (Example of a Gaming Laptop)
     l[1].id = 2;
     strcpy(l[1].name, "Dell G15 Gaming");
     l[1].price = 72000;
-    l[1].brand = 2;      
-    l[1].usage = 1;      
+    l[1].brand = 2;      // 2=Dell
+    l[1].usage = 1;      // 1=Gaming
     l[1].ram = 16;
-    l[1].storage = 512;
-    l[1].rating = 4.5;
+    l[1].storage = 512;;
 
     
     // Phone Entry 1: (Example of Android)
@@ -71,7 +69,6 @@ void lst_of_all(struct Laptop l[], struct Phone p[]) {
     p[0].brand = 1;      // 1=Samsung
     p[0].os = 1;         // 1=Android
     p[0].storage = 128;
-    p[0].rating = 4.0;
 
     // Phone Entry 2: (Example of iPhone)
     p[1].id = 2;
@@ -79,8 +76,7 @@ void lst_of_all(struct Laptop l[], struct Phone p[]) {
     p[1].price = 52000;
     p[1].brand = 2;      // 2=Apple
     p[1].os = 2;         // 2=iOS
-    p[1].storage = 128;  
-    p[1].rating = 4.8;
+    p[1].storage = 128;
 
 }
 
