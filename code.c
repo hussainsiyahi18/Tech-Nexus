@@ -1,25 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 
-
-// ================= STRUCT DEFINITION =================
-struct Laptop {
-    int id;
-    char name[50];
-    int price;
-    int brand;
-    int usage;
-    int ram;
-    int storage;
-};
-
 void lst_of_all(struct Laptop l[], struct Phone p[]);
 void recommendLaptop(struct Laptop db[]);
 void recommendPhone(struct Phone db[]);
-
-// ================= GLOBAL DATABASE =================
-struct Laptop laptopDB[20];
-
 void printLaptopRow(struct Laptop l);
 void printPhoneRow(struct Phone p);
 
@@ -39,7 +23,6 @@ int main() {
     switch(ch) {
         case 1: 
             recommendLaptop(laptopDB); 
-            
             break;
         
         case 2: 
