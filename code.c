@@ -176,13 +176,43 @@ void lst_of_all(struct Laptop l[], struct Phone p[]) {
 
 
     
+    // ===== BUDGET PHONES =====
+
     // Phone Entry 1: (Example of Android)
     p[0].id = 1;
-    strcpy(p[0].name, "Samsung Galaxy M34");
-    p[0].price = 18000;
-    p[0].brand = 1;      // 1=Samsung
+    strcpy(p[0].name, "Redmi A5");
+    p[0].price = 8999;
+    p[0].brand = 1;      // 1=Redmi
     p[0].os = 1;         // 1=Android
-    p[0].storage = 128;
+    p[0].storage = 64;
+
+    p[1].id = 2;
+    strcpy(p[0].name, "Samsung Galaxy A07");
+    p[1].price = 15999;
+    p[1].brand = 2;      // 2=Samsung
+    p[1].os = 1;         // 1=Android
+    p[1].storage = 128;
+
+    p[2].id = 3;
+    strcpy(p[0].name, "Poco M7 5G");
+    p[2].price = 7499;
+    p[2].brand = 3;      // 3=Poco
+    p[2].os = 1;         // 1=Android
+    p[2].storage = 64;
+
+    p[3].id = 4;
+    strcpy(p[0].name, "IQOO Z10X 5G");
+    p[3].price = 14916;
+    p[3].brand = 4;      // 4=IQOO
+    p[3].os = 1;         // 1=Android
+    p[3].storage = 128;
+
+    p[4].id = 5;
+    strcpy(p[0].name, "Redmi 14c 5G");
+    p[4].price = 9999;
+    p[4].brand = 1;      // 1=Redmi
+    p[4].os = 1;         // 1=Android
+    p[4].storage = 64;
 
     // Phone Entry 2: (Example of iPhone)
     p[1].id = 2;
