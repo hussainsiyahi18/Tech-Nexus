@@ -57,22 +57,25 @@ int main() {
 } while (ch != 3);
 
 }
-
+/* 1. Gaming
+2. student/office
+3. programming
+    */
 void lst_of_all(struct Laptop l[], struct Phone p[]) {
     
     // ===== BUDGET LAPTOPS =====
     l[0].id = 1;
     strcpy(l[0].name, "ASUS Vivobook Go 15");
     l[0].price = 38000;
-    l[0].brand = 1;
-    l[0].usage = 2;
+    l[0].brand = 1;   // ASUS = 1
+    l[0].usage = 2;   // 
     l[0].ram = 8;
     l[0].storage = 512;
 
     l[1].id = 2;
     strcpy(l[1].name, "HP 15s");
     l[1].price = 48000;
-    l[1].brand = 2;
+    l[1].brand = 2;   // HP = 2
     l[1].usage = 2;
     l[1].ram = 8;
     l[1].storage = 512;
@@ -80,7 +83,7 @@ void lst_of_all(struct Laptop l[], struct Phone p[]) {
     l[2].id = 3;
     strcpy(l[2].name, "Lenovo IdeaPad Slim 3");
     l[2].price = 42000;
-    l[2].brand = 3;
+    l[2].brand = 3;    // LENOVO = 3
     l[2].usage = 2;
     l[2].ram = 8;
     l[2].storage = 512;
@@ -88,7 +91,7 @@ void lst_of_all(struct Laptop l[], struct Phone p[]) {
     l[3].id = 4;
     strcpy(l[3].name, "Dell Inspiron 15 3505");
     l[3].price = 33000;
-    l[3].brand = 4;
+    l[3].brand = 4;   // DELL = 4
     l[3].usage = 2;
     l[3].ram = 8;
     l[3].storage = 512;
@@ -96,7 +99,7 @@ void lst_of_all(struct Laptop l[], struct Phone p[]) {
     l[4].id = 5;
     strcpy(l[4].name, "Acer Aspire 3");
     l[4].price = 38000;
-    l[4].brand = 5;
+    l[4].brand = 5;   // ACER = 5
     l[4].usage = 2;
     l[4].ram = 8;
     l[4].storage = 512;
