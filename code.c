@@ -371,7 +371,7 @@ void lst_of_all(struct Laptop l[], struct Phone p[]) {
     p[14].battery = 5500;
     p[14].usage = 3;        
 }
-//  1. Best Camera Quality \n2. Longest Battery Life \n3. High Performance / Gaming
+
 void recommendLaptop(struct Laptop db[]) {
     int i, l_budget, l_usage, count = 0;
         printf("\nWhat's the budget for your laptop? (In rupees): ");
@@ -400,18 +400,20 @@ void printLaptopRow(struct Laptop l) {
 
 
 void recommendPhone(struct Phone db[]) {
-    int i, p_budget, p_usage, os_choice, count = 0;
+    int i, p_budget, p_usage, os_choice, brand_prefference, count = 0;
         printf("\nWhat's the budget for your phone? (In rupees): ");
         scanf("%d", &p_budget);
         printf("\nWhat is your top priority? \n1. Best Camera Quality \n2. Longest Battery Life \n3. High Performance / Gaming \nEnter choice (0 for All): ");
         scanf("%d", &p_usage);
         printf("\nDo you want an \n1. Andriod \n2. Ios \nEnter choice (0 for All): ");
         scanf("%d", &os_choice);
+        printf("\nDo you have any brand preference? \n1. Poco \n2. Realme \n3. Redmi \n4. Oppo \n5. Motorola \n6. Samsung \n7. Apple \n8. OnePlus \n9. Xiaomi \nEnter choice (0 for All): ");
+        scanf("%d", &brand_prefference);
             for (i = 0; i < 20; i++) {
                 if (db[i].id == 0) {
                     continue; // it was giving weird output, so I added this to avoid the empty structs in the array
                 }
-                if (db[i].price <= p_budget && (db[i].usage == p_usage || p_usage == 0) && (db[i].os == os_choice || os_choice == 0)) {
+                if (db[i].price <= p_budget && (db[i].usage == p_usage || p_usage == 0) && (db[i].os == os_choice || os_choice == 0) && (db[i].brand == brand_prefference || brand_prefference == 0)) {
                     printPhoneRow(db[i]);
                     count++;
                 }
