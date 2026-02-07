@@ -31,8 +31,8 @@ void printLaptopRow(struct Laptop l);
 void printPhoneRow(struct Phone p);
 
 int main() {
-    struct Laptop laptopDB[20]; 
-    struct Phone phoneDB[20];
+    struct Laptop laptopDB[15]; 
+    struct Phone phoneDB[15];
     int ch; 
 
     lst_of_all(laptopDB, phoneDB);
@@ -66,10 +66,7 @@ int main() {
 
     return 0;
 }
-/* 1. Gaming
-2. student/office
-3. programming
-    */
+
 void lst_of_all(struct Laptop l[], struct Phone p[]) {
     
     // ===== BUDGET LAPTOPS =====
@@ -378,7 +375,7 @@ void recommendLaptop(struct Laptop db[]) {
         scanf("%d", &l_budget);
         printf("\nChoose your primary usage: 1. Gaming, 2. Student/office work/daily life, 3. Programming, Enter choice (0 for All): ");
         scanf("%d", &l_usage);
-            for (i = 0; i < 20; i++) {
+            for (i = 0; i <= 14; i++) {
                 if (db[i].id == 0) {
                     continue; // it was giving weird output, so I added this to avoid the empty structs in the array
                 }
@@ -409,7 +406,7 @@ void recommendPhone(struct Phone db[]) {
         scanf("%d", &os_choice);
         printf("\nDo you have any brand preference? \n1. Poco \n2. Realme \n3. Redmi \n4. Oppo \n5. Motorola \n6. Samsung \n7. Apple \n8. OnePlus \n9. Xiaomi \nEnter choice (0 for All): ");
         scanf("%d", &brand_prefference);
-            for (i = 0; i < 20; i++) {
+            for (i = 0; i <= 14; i++) {
                 if (db[i].id == 0) {
                     continue; // it was giving weird output, so I added this to avoid the empty structs in the array
                 }
