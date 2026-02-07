@@ -176,51 +176,177 @@ void lst_of_all(struct Laptop l[], struct Phone p[]) {
 
 
     
-    // ===== BUDGET PHONES =====
+    // ===== BUDGET PHONES (UNDER 20K) =====
 
-    // Phone Entry 1: (Example of Android)
     p[0].id = 1;
-    strcpy(p[0].name, "Redmi A5");
-    p[0].price = 8999;
-    p[0].brand = 1;      // 1=Redmi
-    p[0].os = 1;         // 1=Android
-    p[0].storage = 64;
+    strcpy(p[0].name, "Poco M7 Pro 5G");
+    p[0].price = 13499;
+    p[0].brand = 1;      // 1=Poco
+    p[0].os = 1;        // 1=Android
+    p[0].ram = 6;
+    p[0].camera = 50;
+    p[0].storage = 128;
+    p[0].battery = 5110;
+    p[0].usage = 3;        // 3=Basic/ Budget users
 
     p[1].id = 2;
-    strcpy(p[0].name, "Samsung Galaxy A07");
-    p[1].price = 15999;
-    p[1].brand = 2;      // 2=Samsung
+    strcpy(p[1].name, "Realme Narzo 80 Lite 5G");
+    p[1].price = 11249;
+    p[1].brand = 2;      // 2=Realme
     p[1].os = 1;         // 1=Android
+    p[1].ram = 6;
+    p[1].camera = 50;
     p[1].storage = 128;
+    p[1].battery = 5000;
+    p[1].usage = 3;        // 3=Basic/ Budget users
 
     p[2].id = 3;
-    strcpy(p[0].name, "Poco M7 5G");
-    p[2].price = 7499;
-    p[2].brand = 3;      // 3=Poco
+    strcpy(p[2].name, "Redmi 15C 5G");
+    p[2].price = 12499;
+    p[2].brand = 3;      // 3=Redmi
     p[2].os = 1;         // 1=Android
-    p[2].storage = 64;
+    p[2].ram = 4;
+    p[2].camera = 50;
+    p[2].storage = 128;
+    p[2].battery = 5000;
+    p[2].usage = 3;  // 3=Basic/ Budget users
 
     p[3].id = 4;
-    strcpy(p[0].name, "IQOO Z10X 5G");
-    p[3].price = 14916;
-    p[3].brand = 4;      // 4=IQOO
+    strcpy(p[3].name, "Oppo K13x 5G");
+    p[3].price = 12499;
+    p[3].brand = 4;      // 4=Oppo
     p[3].os = 1;         // 1=Android
+    p[3].ram = 6;
+    p[3].camera = 50;
     p[3].storage = 128;
+    p[3].battery = 6000;
+    p[3].usage = 1;        // 1=Best for most users
 
     p[4].id = 5;
-    strcpy(p[0].name, "Redmi 14c 5G");
-    p[4].price = 9999;
-    p[4].brand = 1;      // 1=Redmi
+    strcpy(p[4].name, "Motorola G64 5G");
+    p[4].price = 14999;
+    p[4].brand = 5;      // 5=Motorola
     p[4].os = 1;         // 1=Android
+    p[4].ram = 6;
+    p[4].camera = 50;
     p[4].storage = 64;
+    p[4].battery = 6000;
+    p[4].usage = 1;        // 1=Best for most users
 
-    // Phone Entry 2: (Example of iPhone)
-    p[1].id = 2;
-    strcpy(p[1].name, "iPhone 13");
-    p[1].price = 52000;
-    p[1].brand = 2;      // 2=Apple
-    p[1].os = 2;         // 2=iOS
-    p[1].storage = 128;
+
+    // ===== MID RANGE PHONES (30K-70K) =====
+
+    p[5].id = 6;
+    strcpy(p[5].name, "Samsung Galaxy S24 5G");
+    p[5].price = 65000;
+    p[5].brand = 6;      // 6=Samsung
+    p[5].os = 1;        // 1=Android
+    p[5].ram = 8;
+    p[5].camera = 50;
+    p[5].storage = 256;
+    p[5].battery = 4000;
+    p[5].usage = 1;        // 1=Best for most users
+
+    p[6].id = 7;
+    strcpy(p[6].name, "Oppo Reno15 Pro 5G");
+    p[6].price = 67999;
+    p[6].brand = 4;      // 4=Oppo
+    p[6].os = 1;         // 1=Android
+    p[6].ram = 12;
+    p[6].camera = 200;
+    p[6].storage = 256;
+    p[6].battery = 5000;
+    p[6].usage = 2;        // 2=Power/Premium users
+
+    p[7].id = 8;
+    strcpy(p[7].name, "iPhone 15");
+    p[7].price = 54900;
+    p[7].brand = 7;      // 7=Apple
+    p[7].os = 2;         // 2=iOS
+    p[7].ram = 6;
+    p[7].camera = 48;
+    p[7].storage = 128;
+    p[7].battery = 3279;
+    p[7].usage = 2;        // 2=Power/Premium users
+
+    p[8].id = 9;
+    strcpy(p[8].name, "Realme 16 Pro 5G");
+    p[8].price = 32999;
+    p[8].brand = 2;      // 2=Realme
+    p[8].os = 1;         // 1=Android
+    p[8].ram = 8;
+    p[8].camera = 200;
+    p[8].storage = 128;
+    p[8].battery = 7000;
+    p[8].usage = 1;        // 1=Best for most users
+
+    p[9].id = 10;
+    strcpy(p[9].name, "OnePlus Nord 5 5G");
+    p[9].price = 35000;
+    p[9].brand = 8;      // 8=OnePlus
+    p[9].os = 1;         // 1=Android
+    p[9].ram = 8;
+    p[9].camera = 50;
+    p[9].storage = 256;
+    p[9].battery = 6800;
+    p[9].usage = 1;        // 1=Best for most users
+
+    // ===== HIGH RANGE PHONES ( ABOVE 70K) =====
+
+    p[10].id = 11;
+    strcpy(p[10].name, "Apple iPhone 17 Pro");
+    p[10].price = 134900;
+    p[10].brand = 7;      // 7=Apple
+    p[10].os = 2;        // 2=iOS
+    p[10].ram = 12;
+    p[10].camera = 48;
+    p[10].storage = 256;
+    p[10].battery = 3988;
+    p[10].usage = 2;        // 2=Power/Premium users
+
+    p[11].id = 12;
+    strcpy(p[11].name, "Samsung Galaxy S25 Ultra");
+    p[11].price = 119999;
+    p[11].brand = 6;      // 6=Samsung
+    p[11].os = 1;         // 1=Android
+    p[11].ram = 12;
+    p[11].camera = 200;
+    p[11].storage = 256;
+    p[11].battery = 5000;
+    p[11].usage = 2;        // 2=Power/Premium users
+
+    p[12].id = 13;
+    strcpy(p[12].name, "Google Pixel 10 Pro");
+    p[12].price = 124999;
+    p[12].brand = 8;      // 8=Google
+    p[12].os = 1;         // 1=Android
+    p[12].ram = 16;
+    p[12].camera = 50;
+    p[12].storage = 256;
+    p[12].battery = 4870;
+    p[12].usage = 2;        // 2=Power/Premium users
+
+    p[13].id = 14;
+    strcpy(p[13].name, "Xiaomi 15 Ultra");
+    p[13].price = 109999;
+    p[13].brand = 9;      // 9=Xiaomi
+    p[13].os = 1;         // 1=Android
+    p[13].ram = 16;
+    p[13].camera = 50;
+    p[13].storage = 512;
+    p[13].battery = 5410;
+    p[13].usage = 2;        // 2=Power/Premium users
+
+    p[14].id = 15;
+    strcpy(p[14].name, "OnePlus 12 Pro ");
+    p[14].price = 85000;
+    p[14].brand = 8;      // 8=OnePlus
+    p[14].os = 1;         // 1=Android
+    p[14].ram = 16;
+    p[14].camera = 50;
+    p[14].storage = 512;
+    p[14].battery = 5500;
+    p[14].usage = 2;        // 2=Power/Premium users
 
 }
 
