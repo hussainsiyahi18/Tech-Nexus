@@ -111,7 +111,7 @@ void lst_of_all(struct Laptop l[], struct Phone p[]) {
     l[4].storage = 512;
 
 
-    // ===== MID RANGE =====
+    // MID RANGE
 
     l[5].id = 6;
     strcpy(l[5].name, "Samsung Galaxy Book4");
@@ -154,7 +154,7 @@ void lst_of_all(struct Laptop l[], struct Phone p[]) {
     l[9].storage = 512;
 
 
-    // ===== GAMING / HIGH END =====
+    // GAMING / HIGH END
 
     l[10].id = 11;
     strcpy(l[10].name, "Lenovo LOQ 15");
@@ -196,7 +196,7 @@ void lst_of_all(struct Laptop l[], struct Phone p[]) {
     l[14].ram = 32;
     l[14].storage = 1000;
 
-// ===== BUDGET PHONES (UNDER 20K) =====
+// BUDGET PHONES (UNDER 20K)
 
     p[0].id = 1;
     strcpy(p[0].name, "Poco M7 Pro 5G");
@@ -254,7 +254,7 @@ void lst_of_all(struct Laptop l[], struct Phone p[]) {
     p[4].usage = 2;        
 
 
-    // ===== MID RANGE PHONES (30K-70K) =====
+    // MID RANGE PHONES (30K-70K)
 
     p[5].id = 6;
     strcpy(p[5].name, "Samsung Galaxy S24 5G");
@@ -311,8 +311,7 @@ void lst_of_all(struct Laptop l[], struct Phone p[]) {
     p[9].battery = 6800;
     p[9].usage = 2;        
 
-    // ===== HIGH RANGE PHONES ( ABOVE 70K) =====
-
+    // HIGH RANGE PHONES ( ABOVE 70K)
     p[10].id = 11;
     strcpy(p[10].name, "Apple iPhone 17 Pro");
     p[10].price = 134900;
