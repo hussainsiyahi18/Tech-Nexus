@@ -67,17 +67,21 @@ class TechNexusApp:
         else: self.show_phone_view()
 
     def setup_main_ui(self):
-        # Background Image (Layered First)
+        # 1. Load Background Image First
         try:
             bg_data = Image.open("bg.png")
-            self.bg_img = ctk.CTkImage(light_image=bg_data, dark_image=bg_data, size=(1920, 1080))
+            # Increase size slightly for better coverage on high-res screens
+            self.bg_img = ctk.CTkImage(light_image=bg_data, dark_image=bg_data, size=(1300, 850))
             self.bg_label = ctk.CTkLabel(self.root, image=self.bg_img, text="")
             self.bg_label.place(x=0, y=0, relwidth=1, relheight=1)
+            # This ensures the image stays behind everything else
             self.bg_label.lower() 
-        except: pass
+        except Exception as e:
+            print(f"Background Error: {e}")
 
-        # Sidebar
-        self.sidebar = ctk.CTkFrame(self.root, width=220, corner_radius=0, fg_color="#0a0a0a")
+        # 2. Sidebar (Semi-transparent so the image shows through)
+        # Using a tuple for fg_color adds a slight dark tint (30% opacity look)
+        self.sidebar = ctk.CTkFrame(self.root, width=220, corner_radius=0, fg_color=("#1a1a1a", "#0a0a0a"))
         self.sidebar.place(x=0, y=100, relheight=0.9)
         
         self.add_nav("💻 Laptops", self.show_laptop_view)
@@ -86,14 +90,18 @@ class TechNexusApp:
         self.add_nav("⭐ Wishlist", self.show_wishlist_view)
         ctk.CTkButton(self.sidebar, text="Exit", command=self.root.quit, fg_color="transparent", border_width=1).pack(side="bottom", pady=20)
 
-        # Main Content Workspace
+        # 3. Workspace (MUST be transparent to see the image)
         self.workspace = ctk.CTkFrame(self.root, fg_color="transparent")
         self.workspace.place(relx=0.6, rely=0.55, anchor="center", relwidth=0.75, relheight=0.8)
         
+        # 4. Input Area (Transparent)
         self.input_area = ctk.CTkFrame(self.workspace, fg_color="transparent")
         self.input_area.pack(fill="x", pady=(0, 20))
         
-        self.results_box = ctk.CTkTextbox(self.workspace, font=("Consolas", 15), fg_color="#121212", border_width=1, border_color="#1f538d")
+        # 5. Results Box (Keeping it slightly dark for text readability)
+        self.results_box = ctk.CTkTextbox(self.workspace, font=("Consolas", 15), 
+                                          fg_color=("#2b2b2b", "#121212"), 
+                                          border_width=1, border_color="#1f538d")
         self.results_box.pack(fill="both", expand=True)
 
     def add_nav(self, txt, cmd):
