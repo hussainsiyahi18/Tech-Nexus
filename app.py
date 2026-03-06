@@ -33,9 +33,8 @@ class TechNexusApp:
         # Start Move Animation after 1.2 seconds
         self.root.after(1200, self.animate_logo)
 
-    # ==========================================
     # ANIMATION & TRANSITION
-    # ==========================================
+
     def animate_logo(self):
         curr_x, curr_y = 0.5, 0.5
         def move():
@@ -107,88 +106,132 @@ class TechNexusApp:
     def add_nav(self, txt, cmd):
         ctk.CTkButton(self.sidebar, text=txt, command=cmd, height=45).pack(pady=10, padx=20, fill="x")
 
-    # ==========================================
     # C-LOGIC BRIDGE
-    # ==========================================
-    def run_c_logic(self, inputs):
-        if not os.path.exists(EXE_PATH): return "Error: a.exe not found"
-        full_input = "\n".join(inputs + ["3"]) + "\n"
-        try:
-            proc = subprocess.run([EXE_PATH], input=full_input, text=True, capture_output=True)
-            raw = proc.stdout
-            if "choice (0 for All):" in raw:
-                return raw.split("choice (0 for All):")[-1].split("--- MAIN MENU ---")[0].strip()
-            return raw
-        except: return "Execution Error"
 
-    # ==========================================
+    def run_c_logic(self, inputs):
+        if not os.path.exists(EXE_PATH): 
+            return "Error: a.exe not found"
+        try:
+            # Pass inputs directly as arguments
+            proc = subprocess.run([EXE_PATH] + inputs, text=True, capture_output=True)
+            raw_output = proc.stdout.strip()
+            
+            # Simple check: if C returned nothing, show a message
+            if not raw_output:
+                return "No results returned from the database."
+            return raw_output
+        except Exception as e: 
+            return f"Execution Error: {str(e)}"
+
     # LAPTOP & PHONE VIEWS
-    # ==========================================
+
     def show_laptop_view(self):
         self.clear_inputs()
         ctk.CTkLabel(self.input_area, text="LAPTOP SEARCH", font=("Roboto", 24, "bold"), text_color="#3a7ebf").pack()
-        row = ctk.CTkFrame(self.input_area, fg_color="transparent")
-        row.pack(pady=10)
-
-        self.laptop_ranges = {"Select Budget": "0", "Under ₹40k": "40000", "₹40k-₹70k": "70000", "₹70k-₹1.2L": "120000", "Custom...": "CUSTOM"}
-        self.l_budget_drop = ctk.CTkComboBox(row, values=list(self.laptop_ranges.keys()), command=self.toggle_l_custom, width=160)
-        self.l_budget_drop.pack(side="left", padx=5)
-        self.l_custom = ctk.CTkEntry(row, placeholder_text="₹", width=70)
         
-        self.l_usage = ctk.CTkComboBox(row, values=["0-All", "1-Gaming", "2-Office", "3-Coding"], width=120)
+        row1 = ctk.CTkFrame(self.input_area, fg_color="transparent")
+        row1.pack(pady=5)
+        
+        self.l_budget = ctk.CTkEntry(row1, placeholder_text="Max Budget (₹)", width=140)
+        self.l_budget.pack(side="left", padx=5)
+        
+        self.l_usage = ctk.CTkComboBox(row1, values=["0-All", "1-Gaming", "2-Office", "3-Coding"], width=120)
         self.l_usage.pack(side="left", padx=5)
-        self.l_brand = ctk.CTkComboBox(row, values=["0-All", "1-Asus", "2-HP", "3-Lenovo", "4-Dell"], width=120)
-        self.l_brand.pack(side="left", padx=5)
+
+        # Brand Checklist for Laptops
+        self.l_brands_frame = ctk.CTkScrollableFrame(self.input_area, height=100, label_text="Select Brands")
+        self.l_brands_frame.pack(fill="x", padx=20, pady=5)
+        self.l_brand_vars = {}
+        laptop_brands = ["Asus", "HP", "Lenovo", "Dell", "Acer", "Samsung", "Apple", "MSI"]
+        for brand in laptop_brands:
+            var = ctk.BooleanVar()
+            cb = ctk.CTkCheckBox(self.l_brands_frame, text=brand, variable=var)
+            cb.pack(side="left", padx=10)
+            self.l_brand_vars[brand] = var
+
+        row2 = ctk.CTkFrame(self.input_area, fg_color="transparent")
+        row2.pack(pady=5)
+        self.l_ram = ctk.CTkComboBox(row2, values=["0", "8GB", "16GB", "32GB"], width=100)
+        self.l_ram.pack(side="left", padx=5)
+        self.l_storage = ctk.CTkComboBox(row2, values=["0", "256GB", "512GB", "1TB"], width=100)
+        self.l_storage.pack(side="left", padx=5)
         
-        ctk.CTkButton(row, text="SEARCH", width=90, command=self.do_laptop_search).pack(side="left", padx=5)
-        ctk.CTkButton(row, text="⭐ SAVE", fg_color="#27ae60", width=80, command=self.save_wishlist).pack(side="left", padx=5)
+        ctk.CTkButton(row2, text="SEARCH", width=90, command=self.do_laptop_search).pack(side="left", padx=5)
+        ctk.CTkButton(row2, text="⭐ SAVE", fg_color="#27ae60", width=80, command=self.save_wishlist).pack(side="left", padx=5)
+
+    def show_phone_view(self):
+        self.clear_inputs()
+        ctk.CTkLabel(self.input_area, text="PHONE SEARCH", font=("Roboto", 24, "bold"), text_color="#3a7ebf").pack()
+        
+        row1 = ctk.CTkFrame(self.input_area, fg_color="transparent")
+        row1.pack(pady=5)
+        self.p_budget = ctk.CTkEntry(row1, placeholder_text="Max Budget (₹)", width=140)
+        self.p_budget.pack(side="left", padx=5)
+        self.p_usage = ctk.CTkComboBox(row1, values=["0-All", "1-Camera", "2-Battery", "3-Speed"], width=120)
+        self.p_usage.pack(side="left", padx=5)
+
+        # Brand Checklist for Phones
+        self.p_brands_frame = ctk.CTkScrollableFrame(self.input_area, height=100, label_text="Select Brands")
+        self.p_brands_frame.pack(fill="x", padx=20, pady=5)
+        self.p_brand_vars = {}
+        phone_brands = ["Samsung", "Apple", "Poco", "Realme", "Xiaomi", "Oppo", "Vivo", "Motorola", "Google"]
+        for brand in phone_brands:
+            var = ctk.BooleanVar()
+            cb = ctk.CTkCheckBox(self.p_brands_frame, text=brand, variable=var)
+            cb.pack(side="left", padx=10)
+            self.p_brand_vars[brand] = var
+
+        row2 = ctk.CTkFrame(self.input_area, fg_color="transparent")
+        row2.pack(pady=5)
+        self.p_5g = ctk.CTkComboBox(row2, values=["0", "5G"], width=100)
+        self.p_5g.pack(side="left", padx=5)
+        self.p_storage = ctk.CTkComboBox(row2, values=["0", "128GB", "256GB", "512GB"], width=120)
+        self.p_storage.pack(side="left", padx=5)
+        
+        ctk.CTkButton(row2, text="SEARCH", width=90, command=self.do_phone_search).pack(side="left", padx=5)
+        ctk.CTkButton(row2, text="⭐ SAVE", fg_color="#27ae60", width=80, command=self.save_wishlist).pack(side="left", padx=5)
+
+    def get_selected_brands(self, var_dict):
+        selected = [brand for brand, var in var_dict.items() if var.get()]
+        return ",".join(selected) if selected else "0"
+
+    def do_laptop_search(self):
+        laptop_usage_map = {"0": "0", "1": "gaming", "2": "office", "3": "coding"}
+        usage_key = self.l_usage.get()[0]
+        usage = laptop_usage_map.get(usage_key, "0")
+        
+        brands = self.get_selected_brands(self.l_brand_vars)
+        inputs = ["1", self.l_budget.get() or "0", usage, brands, self.l_ram.get(), self.l_storage.get()]
+        res = self.run_c_logic(inputs)
+        self.search_history.append(res)
+        self.results_box.delete("1.0", "end")
+        self.results_box.insert("end", f"=== LAPTOP RESULTS ===\n\n{res}")
+
+    def do_phone_search(self):
+        phone_usage_map = {"0": "0", "1": "camera", "2": "battery", "3": "speed"}
+        usage_key = self.p_usage.get()[0]
+        usage = phone_usage_map.get(usage_key, "0")
+        
+        brands = self.get_selected_brands(self.p_brand_vars)
+        inputs = ["2", self.p_budget.get() or "0", usage, brands, self.p_5g.get(), self.p_storage.get()]
+        res = self.run_c_logic(inputs)
+        self.search_history.append(res)
+        self.results_box.delete("1.0", "end")
+        self.results_box.insert("end", f"=== PHONE RESULTS ===\n\n{res}")
 
     def toggle_l_custom(self, choice):
         if choice == "Custom...": self.l_custom.pack(side="left", padx=2)
         else: self.l_custom.pack_forget()
 
-    def do_laptop_search(self):
-        b = self.l_custom.get() if self.l_budget_drop.get() == "Custom..." else self.laptop_ranges.get(self.l_budget_drop.get(), "0")
-        res = self.run_c_logic(["1", b, self.l_usage.get()[0], self.l_brand.get()[0]])
-        self.results_box.delete("1.0", "end")
-        self.results_box.insert("end", f"=== LAPTOP RESULTS ===\n\n{res}")
-        self.search_history.append(f"Laptop Search: {res[:50]}...")
-
-    def show_phone_view(self):
-        self.clear_inputs()
-        ctk.CTkLabel(self.input_area, text="PHONE SEARCH", font=("Roboto", 24, "bold"), text_color="#3a7ebf").pack()
-        row = ctk.CTkFrame(self.input_area, fg_color="transparent")
-        row.pack(pady=10)
-
-        self.phone_ranges = {"Select Budget": "0", "Under ₹15k": "15000", "₹15k-₹40k": "40000", "₹40k-₹80k": "80000", "Custom...": "CUSTOM"}
-        self.p_budget_drop = ctk.CTkComboBox(row, values=list(self.phone_ranges.keys()), command=self.toggle_p_custom, width=160)
-        self.p_budget_drop.pack(side="left", padx=5)
-        self.p_custom = ctk.CTkEntry(row, placeholder_text="₹", width=70)
-        
-        self.p_usage = ctk.CTkComboBox(row, values=["0-All", "1-Camera", "2-Battery", "3-Speed"], width=120)
-        self.p_usage.pack(side="left", padx=5)
-        self.p_brand = ctk.CTkComboBox(row, values=["0-All", "1-Poco", "2-Samsung", "3-Apple", "4-Moto"], width=120)
-        self.p_brand.pack(side="left", padx=5)
-        
-        ctk.CTkButton(row, text="SEARCH", width=90, command=self.do_phone_search).pack(side="left", padx=5)
-        ctk.CTkButton(row, text="⭐ SAVE", fg_color="#27ae60", width=80, command=self.save_wishlist).pack(side="left", padx=5)
-
     def toggle_p_custom(self, choice):
         if choice == "Custom...": self.p_custom.pack(side="left", padx=2)
         else: self.p_custom.pack_forget()
 
-    def do_phone_search(self):
-        b = self.p_custom.get() if self.p_budget_drop.get() == "Custom..." else self.phone_ranges.get(self.p_budget_drop.get(), "0")
-        res = self.run_c_logic(["2", b, self.p_usage.get()[0], "0", self.p_brand.get()[0]])
-        self.results_box.delete("1.0", "end")
-        self.results_box.insert("end", f"=== PHONE RESULTS ===\n\n{res}")
-        self.search_history.append(f"Phone Search: {res[:50]}...")
 
-    # ==========================================
     # WISHLIST & HISTORY
-    # ==========================================
+
     def parse_results(self, text):
-        """Groups devices with their full specs into a dictionary."""
+    #Groups devices with their full specs into a dictionary.
         lines = text.split('\n')
         devices_dict = {}
         current_device_name = None
@@ -206,7 +249,7 @@ class TechNexusApp:
                     devices_dict[current_device_name] = "\n".join(current_specs)
                 
                 # Start a new device
-                current_device_name = line.split("-")[-1].strip() # Extract just the name
+                current_device_name = line.split("-", 1)[1].strip() # Extract just the name
                 current_specs = [line] # Start a new specs list with the name line
             else:
                 # Add specs to the current device
@@ -220,7 +263,7 @@ class TechNexusApp:
         return devices_dict
 
     def save_wishlist(self):
-        """Allows user to pick a name but saves the full spec block."""
+        # Allows user to pick a name but saves the full spec block.
         curr = self.results_box.get("1.0", "end").strip()
         if not curr or "RESULTS" not in curr:
             messagebox.showwarning("Empty", "No results found! Search first.")
